@@ -10,7 +10,7 @@
     "scripts": {
         "start:dev": "nodemon",
         "build": "next build && tsc --project tsconfig.server.json",
-        "start": "next start -p $PORT",
+        "start": "NODE_ENV=production node ./app/server.js -p $PORT",
         "test": "jest --coverage",
         "lint": "eslint './{src,pages,server}/**/*' --ext .tsx,.ts",
         "pretty": "prettier --write --config .prettierrc.js {src,pages,server}/**/*.{ts,tsx}",
@@ -18,7 +18,7 @@
         "analyze": "cross-env BUNDLE_ANALYZE=both npm run build",
         "export": "cross-env NODE_ENV=production next export",
         "cli": "pankod-cli add",
-        "heroku-postbuild": "npm run build"
+        "heroku-prebuild": "npm i --dev && NODE_ENV=production next build"
     },
     "dependencies": {
         "@zeit/next-bundle-analyzer": "^0.1.2",
